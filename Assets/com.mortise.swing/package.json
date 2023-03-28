@@ -1,0 +1,19 @@
+{
+    "name": "com.mortise.litio",
+    "version": "0.0.0",
+    "unity": "2019.4",
+    "author": {
+        "name": "onovich",
+        "email": "onovich1110@gmail.com"
+    },
+    "displayName": "MortiseFrame.LitIO",
+    "description": "An easing function library which doesn't depend on Unity Engine.",
+    "documentationURL": "https://github.com/onovich/Swing",
+    "hideInEditor": false,
+    "category": "Easing",
+    "keywords": [
+        "MortiseFrame",
+        "easing"
+    ],
+    "unityRelease": "16f1"
+}
