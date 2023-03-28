@@ -1,10 +1,32 @@
 using MortiseFrame.Swing.Generic;
+using UnityEngine;
 
 namespace MortiseFrame.Swing.Easing {
 
     public static class EasingFacade {
 
         delegate float EasingHandler(float t, float start, float end, float duration, EasingMode mode);
+
+        public static Vector2 Easing2D(float timePassed, Vector2 start, Vector2 end, float duration, EasingType type, EasingMode mode) {
+            var x = Easing(timePassed, start.x, end.x, duration, type, mode);
+            var y = Easing(timePassed, start.y, end.y, duration, type, mode);
+            return new Vector2(x, y);
+        }
+
+        public static Vector3 Easing3D(float timePassed, Vector3 start, Vector3 end, float duration, EasingType type, EasingMode mode) {
+            var x = Easing(timePassed, start.x, end.x, duration, type, mode);
+            var y = Easing(timePassed, start.y, end.y, duration, type, mode);
+            var z = Easing(timePassed, start.z, end.z, duration, type, mode);
+            return new Vector3(x, y, z);
+        }
+
+        public static Quaternion EasingQuaternion(float timePassed, Quaternion start, Quaternion end, float duration, EasingType type, EasingMode mode) {
+            var x = Easing(timePassed, start.x, end.x, duration, type, mode);
+            var y = Easing(timePassed, start.y, end.y, duration, type, mode);
+            var z = Easing(timePassed, start.z, end.z, duration, type, mode);
+            var w = Easing(timePassed, start.w, end.w, duration, type, mode);
+            return new Quaternion(x, y, z, w);
+        }
 
         public static float Easing(float timePassed, float start, float end, float duration, EasingType type, EasingMode mode) {
             EasingHandler easingFunction = GetEasingFunction(type, mode);
