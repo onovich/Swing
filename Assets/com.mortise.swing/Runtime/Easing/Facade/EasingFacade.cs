@@ -7,7 +7,7 @@ namespace MortiseFrame.Swing.Easing {
 
         delegate float EasingHandler(float t, float start, float end, float duration, EasingMode mode);
 
-        public static Vector2 Easing2D(float timePassed, Vector2 start, Vector2 end, float duration, EasingType type, EasingMode mode) {
+        public static Vector2 Easing2D(float timePassed, Vector2 start, Vector2 end, float duration, EasingType type, EasingMode mode = EasingMode.None) {
             var x = Easing(timePassed, start.x, end.x, duration, type, mode);
             var y = Easing(timePassed, start.y, end.y, duration, type, mode);
             return new Vector2(x, y);
