@@ -3,8 +3,10 @@ using UnityEngine;
 using MortiseFrame.Swing.Generic;
 using MortiseFrame.Swing.Easing;
 
-namespace MortiseFrame.Swing.Test {
-    public class EasingTest {
+namespace MortiseFrame.Swing.Test
+{
+    public class EasingTest
+    {
 
         [Test]
         [TestCase(0, 0, 1, 1, EasingType.Linear, EasingMode.EaseIn, ExpectedResult = 0)]
@@ -16,8 +18,9 @@ namespace MortiseFrame.Swing.Test {
         [TestCase(0, 0, 1, 1, EasingType.Sine, EasingMode.EaseIn, ExpectedResult = 0)]
         [TestCase(0.5f, 0, 1, 1, EasingType.Sine, EasingMode.EaseIn, ExpectedResult = 0.29289323f)]
         [TestCase(1, 0, 1, 1, EasingType.Sine, EasingMode.EaseIn, ExpectedResult = 1)]
-        public float Test(float timePassed, float start, float end, float duration, EasingType type, EasingMode mode) {
-            return EasingFacade.Easing(timePassed, start, end, duration, type, mode);
+        public float Test(float timePassed, float start, float end, float duration, EasingType type, EasingMode mode)
+        {
+            return EasingHelper.Easing(timePassed, start, end, duration, type, mode);
         }
 
     }

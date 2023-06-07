@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MortiseFrame.Swing.Easing {
 
-    public static class EasingHelper {
+    internal static class EasingFunction {
 
         internal static float Linear(float t, float b, float c, float d, EasingMode mode) {
             return c * t / d + b;

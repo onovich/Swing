@@ -31,12 +31,12 @@ namespace MortiseFrame.Swing.Sample {
             if (currentTime > duration) {
                 currentTime = 0;
             }
-            currentPosition = EasingFacade.Easing3D(currentTime, startPosition, endPosition, duration, type, mode);
+            currentPosition = EasingHelper.Easing3D(currentTime, startPosition, endPosition, duration, type, mode);
 
             for (int i = 0; i < duration; i++) {
                 for (int j = 0; j < resolution; j++) {
                     float time = j / (float)(resolution - 1) * duration;
-                    float value = EasingFacade.Easing(time, 0f, 1f, duration, type, mode);
+                    float value = EasingHelper.Easing(time, 0f, 1f, duration, type, mode);
                     Vector3 position = new Vector3(time, value, 0f) + transform.position;
                     lineRenderer.SetPosition(j, position);
                 }
