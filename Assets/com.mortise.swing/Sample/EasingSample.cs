@@ -120,8 +120,8 @@ namespace MortiseFrame.Swing.Sample {
         private void UpdateLine() {
 
             for (int i = 0; i < resolution; i++) {
-                var x = EasingHelper.Easing(i, -1f, 1f, resolution, EasingType.Linear, EasingMode.None);
-                var y = EasingHelper.Easing(i, -1f, 1f, resolution, type, mode);
+                var x = EasingHelper.Easing(-1f, 1f, i, resolution, EasingType.Linear, EasingMode.None);
+                var y = EasingHelper.Easing(-1f, 1f, i, resolution, type, mode);
                 Vector3 position = new Vector3(x, y, 0f) + transform.position;
                 lineRenderer.SetPosition(i, position);
             }
@@ -136,8 +136,8 @@ namespace MortiseFrame.Swing.Sample {
                 currentTime = 0;
             }
 
-            var y = EasingHelper.Easing(currentTime, -1f, 1f, duration, type, mode);
-            var x = EasingHelper.Easing(currentTime, -1f, 1f, duration, EasingType.Linear, EasingMode.None);
+            var y = EasingHelper.Easing(-1f, 1f, currentTime, duration, type, mode);
+            var x = EasingHelper.Easing(-1f, 1f, currentTime, duration, EasingType.Linear, EasingMode.None);
 
             nod.position = new Vector3(x, y, 5f);
 
