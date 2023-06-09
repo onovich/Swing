@@ -9,3 +9,6 @@ It's an easing function library that doesn't depend on the Unity Engine, except 
 [ ]Wave functions
 
 [ ]Curve functions
+
+# UPM URL
+ssh://git@github.com/onovich/Swing.git?path=/Assets/com.mortise.swing#main
