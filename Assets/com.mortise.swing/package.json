@@ -1,12 +1,12 @@
 {
-    "name": "com.mortise.litio",
+    "name": "com.mortise.swing",
     "version": "0.0.3",
     "unity": "2019.4",
     "author": {
         "name": "onovich",
         "email": "onovich1110@gmail.com"
     },
-    "displayName": "MortiseFrame.LitIO",
+    "displayName": "MortiseFrame.Swing",
     "description": "An easing function library.",
     "documentationURL": "https://github.com/onovich/Swing",
     "hideInEditor": false,
