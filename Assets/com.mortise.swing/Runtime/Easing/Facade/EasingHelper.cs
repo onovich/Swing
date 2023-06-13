@@ -5,22 +5,38 @@ namespace MortiseFrame.Swing.Easing {
 
     public static class EasingHelper {
 
-        delegate float EasingHandler(float start, float end, float t, float duration, EasingMode mode);
+        delegate float EasingHandler(float start, float end, float current, float duration, EasingMode mode);
+
+        public static Color EasingColor(Color start, Color end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) {
+            var r = Easing(start.r, end.r, current, duration, type, mode);
+            var g = Easing(start.g, end.g, current, duration, type, mode);
+            var b = Easing(start.b, end.b, current, duration, type, mode);
+            var a = Easing(start.a, end.a, current, duration, type, mode);
+            return new Color(r, g, b, a);
+        }
+
+        public static Color32 EasingColor32(Color32 start, Color32 end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) {
+            var r = EasingByte(start.r, end.r, current, duration, type, mode);
+            var g = EasingByte(start.g, end.g, current, duration, type, mode);
+            var b = EasingByte(start.b, end.b, current, duration, type, mode);
+            var a = EasingByte(start.a, end.a, current, duration, type, mode);
+            return new Color32(r, g, b, a);
+        }
 
         public static Vector2 Easing2D(Vector2 start, Vector2 end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) {
-            var x = Easing(current, start.x, end.x, duration, type, mode);
-            var y = Easing(current, start.y, end.y, duration, type, mode);
+            var x = Easing(start.x, end.x, current, duration, type, mode);
+            var y = Easing(start.y, end.y, current, duration, type, mode);
             return new Vector2(x, y);
         }
 
-        public static Vector3 Easing3D(Vector3 start, Vector3 end, float current, float duration, EasingType type, EasingMode mode) {
-            var x = Easing(current, start.x, end.x, duration, type, mode);
-            var y = Easing(current, start.y, end.y, duration, type, mode);
-            var z = Easing(current, start.z, end.z, duration, type, mode);
+        public static Vector3 Easing3D(Vector3 start, Vector3 end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) {
+            var x = Easing(start.x, end.x, current, duration, type, mode);
+            var y = Easing(start.y, end.y, current, duration, type, mode);
+            var z = Easing(start.z, end.z, current, duration, type, mode);
             return new Vector3(x, y, z);
         }
 
-        public static float Easing(float start, float end, float current, float duration, EasingType type, EasingMode mode) {
+        public static float Easing(float start, float end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) {
             EasingHandler easingFunction = GetEasingFunction(type, mode);
             var t = current;
             var b = start;
@@ -29,7 +45,16 @@ namespace MortiseFrame.Swing.Easing {
             return easingFunction(t, b, c, d, mode);
         }
 
-        private static EasingHandler GetEasingFunction(EasingType type, EasingMode mode) {
+        public static byte EasingByte(byte start, byte end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) {
+            EasingHandler easingFunction = GetEasingFunction(type, mode);
+            var t = current;
+            var b = start;
+            var c = end - start;
+            var d = duration;
+            return (byte)easingFunction(t, b, c, d, mode);
+        }
+
+        private static EasingHandler GetEasingFunction(EasingType type, EasingMode mode = EasingMode.None) {
 
             if (type == EasingType.Sine) {
                 return EasingFunction.Sine;
