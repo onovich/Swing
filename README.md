@@ -7,7 +7,7 @@ Swing, a lightweight easing function library. <br/>
 # Sample
 ```
 // In .Net Core Project
-var timer = 10f;
+var timer = 10000f;
 Color color;
 Vector2 pos;
 float x;
@@ -18,7 +18,7 @@ while (timer > 0) {
     color = EasingHelper.EasingColor(Color.black, Color.red, timer, 10f, EasingType.Sine, EasingMode.EaseInOut); 
     pos = EasingHelper.Easing2D(Vector2.zero, Vector2.one, timer, 10f, EasingType.Linear, EasingMode.None);
     x = EasingHelper.Easing(-1f, 1f, timer, 10f, EasingType.Back, EasingMode.EaseIn);
-    Thread.Sleep(sleepTime);
+    Thread.Sleep(dt);
 }
 ```
 
