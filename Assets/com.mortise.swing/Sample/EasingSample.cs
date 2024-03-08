@@ -20,7 +20,8 @@ namespace MortiseFrame.Swing.Sample {
         public MeshFilter boxFilter;
         public Dropdown EasingTypeDropdown;
         public Dropdown EasingModeDropdown;
-        public Transform nod;
+        public Transform nod1;
+        public Transform nod2;
 
         // Lift Cycle
         float currentTime = 0f;
@@ -136,10 +137,15 @@ namespace MortiseFrame.Swing.Sample {
                 currentTime = 0;
             }
 
-            var y = EasingHelper.Easing(-1f, 1f, currentTime, duration, type, mode);
-            var x = EasingHelper.Easing(-1f, 1f, currentTime, duration, EasingType.Linear, EasingMode.None);
+            var x1 = EasingHelper.Easing(-1f, 1f, currentTime, duration, EasingType.Linear, EasingMode.None);
+            var y1 = EasingHelper.Easing(-1f, 1f, currentTime, duration, type, mode);
 
-            nod.position = new Vector3(x, y, 5f);
+            nod1.position = new Vector3(x1, y1, 5f);
+
+            var x2 = 1;
+            var y2 = EasingHelper.Easing(-1f, 1f, currentTime, duration, type, mode);
+
+            nod2.position = new Vector3(x2, y2, 5f);
 
         }
 
