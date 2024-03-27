@@ -2,7 +2,7 @@
 Swing, a lightweight easing function library. <br/>
 **Swing，轻量级的缓动函数库，取名自“曳”。**
 
-![](https://github.com/onovich/Swing/blob/main/Assets/com.mortise.swing/Sample/Art/spr_scr_shoot.png)
+![](https://github.com/onovich/Swing/blob/main/Assets/com.mortise.swing/Resource_Sample/spr_scr_shoot.png)
 
 # Unity Support
 The Main branch does not depend on the Unity Engine (but relies on [Abacus](https://github.com/onovich/Abacus)) and can be used for server-side or other projects that prohibit dependency on the Unity Engine.<br/>
