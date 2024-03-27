@@ -1,3 +1,5 @@
+using System;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace MortiseFrame.Swing {
@@ -20,6 +22,23 @@ namespace MortiseFrame.Swing {
             var b = EasingByte(start.b, end.b, current, duration, type, mode);
             var a = EasingByte(start.a, end.a, current, duration, type, mode);
             return new Color32(r, g, b, a);
+        }
+
+        public static T EasingFloatStruct_Unsafe<T>(T start, T end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) where T : struct {
+            if (Marshal.SizeOf<T>() % sizeof(float) != 0) {
+                throw new InvalidOperationException("Type T Must Only Contain Float Fields.");
+            }
+
+            Span<float> startSpan = MemoryMarshal.Cast<T, float>(MemoryMarshal.CreateSpan(ref start, 1));
+            Span<float> endSpan = MemoryMarshal.Cast<T, float>(MemoryMarshal.CreateSpan(ref end, 1));
+            T result = new T();
+            Span<float> resultSpan = MemoryMarshal.Cast<T, float>(MemoryMarshal.CreateSpan(ref result, 1));
+
+            for (int i = 0; i < startSpan.Length; i++) {
+                resultSpan[i] = Easing(startSpan[i], endSpan[i], current, duration, type, mode);
+            }
+
+            return result;
         }
 
         public static Vector2 Easing2D(Vector2 start, Vector2 end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) {
