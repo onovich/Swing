@@ -24,11 +24,7 @@ namespace MortiseFrame.Swing {
             return new Color32(r, g, b, a);
         }
 
-        public static T EasingFloatStruct_Unsafe<T>(T start, T end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) where T : struct {
-            if (Marshal.SizeOf<T>() % sizeof(float) != 0) {
-                throw new InvalidOperationException("Type T Must Only Contain Float Fields.");
-            }
-
+        public static T EasingFloat2D_Unsafe<T>(T start, T end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) where T : struct {
             Span<float> startSpan = MemoryMarshal.Cast<T, float>(MemoryMarshal.CreateSpan(ref start, 1));
             Span<float> endSpan = MemoryMarshal.Cast<T, float>(MemoryMarshal.CreateSpan(ref end, 1));
             T result = new T();
