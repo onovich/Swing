@@ -1,7 +1,6 @@
-using MortiseFrame.Swing.Generic;
 using UnityEngine;
 
-namespace MortiseFrame.Swing.Easing {
+namespace MortiseFrame.Swing {
 
     public static class EasingHelper {
 

@@ -1,4 +1,4 @@
-namespace MortiseFrame.Swing.Generic {
+namespace MortiseFrame.Swing {
     public enum EasingType : int {
         Linear = 0,
         Sine = 1,

@@ -1,6 +1,5 @@
 using UnityEngine;
-using MortiseFrame.Swing.Easing;
-using MortiseFrame.Swing.Generic;
+using MortiseFrame.Swing;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
