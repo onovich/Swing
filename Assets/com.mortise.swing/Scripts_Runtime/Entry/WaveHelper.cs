@@ -6,6 +6,20 @@ namespace MortiseFrame.Swing {
 
         delegate float WaveHandler(float frequency, float amplitude, float current, float phase = 0);
 
+        public static float EasingInWave(float frequency, float amplitude, float current, float duration, float phase, WaveType waveType, EasingType type, EasingMode mode = EasingMode.None) {
+            WaveHandler waveFunction = GetWaveFunction(waveType);
+            float value = waveFunction(frequency, amplitude, current, phase);
+            float factor = EasingHelper.Easing(0, 1, current, duration, type, mode);
+            return factor * value;
+        }
+
+        public static float EasingOutWave(float frequency, float amplitude, float current, float duration, float phase, WaveType waveType, EasingType type, EasingMode mode = EasingMode.None) {
+            WaveHandler waveFunction = GetWaveFunction(waveType);
+            float value = waveFunction(frequency, amplitude, current, phase);
+            float factor = EasingHelper.Easing(1, 0, current, duration, type, mode);
+            return factor * value;
+        }
+
         public static float Wave(float frequency, float amplitude, float current, float phase, WaveType waveType) {
             WaveHandler waveFunction = GetWaveFunction(waveType);
             return waveFunction(frequency, amplitude, current, phase);
@@ -26,6 +40,6 @@ namespace MortiseFrame.Swing {
             }
         }
 
-
     }
+
 }
