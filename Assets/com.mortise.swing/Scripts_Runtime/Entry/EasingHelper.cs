@@ -24,19 +24,6 @@ namespace MortiseFrame.Swing {
             return new FColor32(r, g, b, a);
         }
 
-        public static T EasingFloat2D_Unsafe<T>(T start, T end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) where T : struct {
-            Span<float> startSpan = MemoryMarshal.Cast<T, float>(MemoryMarshal.CreateSpan(ref start, 1));
-            Span<float> endSpan = MemoryMarshal.Cast<T, float>(MemoryMarshal.CreateSpan(ref end, 1));
-            T result = new T();
-            Span<float> resultSpan = MemoryMarshal.Cast<T, float>(MemoryMarshal.CreateSpan(ref result, 1));
-
-            for (int i = 0; i < startSpan.Length; i++) {
-                resultSpan[i] = Easing(startSpan[i], endSpan[i], current, duration, type, mode);
-            }
-
-            return result;
-        }
-
         public static FVector2 Easing2D(FVector2 start, FVector2 end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) {
             var x = Easing(start.x, end.x, current, duration, type, mode);
             var y = Easing(start.y, end.y, current, duration, type, mode);
