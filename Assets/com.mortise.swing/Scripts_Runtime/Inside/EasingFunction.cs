@@ -1,4 +1,4 @@
-using UnityEngine;
+using MortiseFrame.Abacus;
 
 namespace MortiseFrame.Swing {
 
@@ -109,15 +109,15 @@ namespace MortiseFrame.Swing {
         }
 
         static float SineIn(float t, float b, float c, float d) {
-            return -c * Mathf.Cos(t / d * (Mathf.PI / 2)) + c + b;
+            return -c * FMath.Cos(t / d * (FMath.PI / 2)) + c + b;
         }
 
         static float SineOut(float t, float b, float c, float d) {
-            return c * Mathf.Sin(t / d * (Mathf.PI / 2)) + b;
+            return c * FMath.Sin(t / d * (FMath.PI / 2)) + b;
         }
 
         static float SineInOut(float t, float b, float c, float d) {
-            return -c / 2 * ((float)Mathf.Cos(Mathf.PI * t / d) - 1) + b;
+            return -c / 2 * ((float)FMath.Cos(FMath.PI * t / d) - 1) + b;
         }
 
         static float QuadIn(float t, float b, float c, float d) {
@@ -173,32 +173,32 @@ namespace MortiseFrame.Swing {
         }
 
         static float ExpoIn(float t, float b, float c, float d) {
-            return (t == 0) ? b : c * (float)Mathf.Pow(2, 10 * (t / d - 1)) + b;
+            return (t == 0) ? b : c * (float)FMath.Pow(2, 10 * (t / d - 1)) + b;
         }
 
         static float ExpoOut(float t, float b, float c, float d) {
-            return (t == d) ? b + c : c * (-(float)Mathf.Pow(2, -10 * t / d) + 1) + b;
+            return (t == d) ? b + c : c * (-(float)FMath.Pow(2, -10 * t / d) + 1) + b;
 
         }
 
         static float ExpoInOut(float t, float b, float c, float d) {
             if (t == 0) return b;
             if (t == d) return b + c;
-            if ((t /= d / 2) < 1) return c / 2 * (float)Mathf.Pow(2, 10 * (t - 1)) + b;
-            return c / 2 * (-(float)Mathf.Pow(2, -10 * --t) + 2) + b;
+            if ((t /= d / 2) < 1) return c / 2 * (float)FMath.Pow(2, 10 * (t - 1)) + b;
+            return c / 2 * (-(float)FMath.Pow(2, -10 * --t) + 2) + b;
         }
 
         static float CircIn(float t, float b, float c, float d) {
-            return -c * ((float)Mathf.Sqrt(1 - (t /= d) * t) - 1) + b;
+            return -c * ((float)FMath.Sqrt(1 - (t /= d) * t) - 1) + b;
         }
 
         static float CircOut(float t, float b, float c, float d) {
-            return c * (float)Mathf.Sqrt(1 - (t = t / d - 1) * t) + b;
+            return c * (float)FMath.Sqrt(1 - (t = t / d - 1) * t) + b;
         }
 
         static float CircInOut(float t, float b, float c, float d) {
-            if ((t /= d / 2) < 1) return -c / 2 * ((float)Mathf.Sqrt(1 - t * t) - 1) + b;
-            return c / 2 * ((float)Mathf.Sqrt(1 - (t -= 2) * t) + 1) + b;
+            if ((t /= d / 2) < 1) return -c / 2 * ((float)FMath.Sqrt(1 - t * t) - 1) + b;
+            return c / 2 * ((float)FMath.Sqrt(1 - (t -= 2) * t) + 1) + b;
         }
 
         static float BackIn(float t, float b, float c, float d) {
@@ -222,7 +222,7 @@ namespace MortiseFrame.Swing {
             float p = d * .3f;
             float a = c;
             float s = p / 4;
-            return -(a * (float)Mathf.Pow(2, 10 * (t -= 1)) * (float)Mathf.Sin((t * d - s) * (2 * (float)Mathf.PI) / p)) + b;
+            return -(a * (float)FMath.Pow(2, 10 * (t -= 1)) * (float)FMath.Sin((t * d - s) * (2 * (float)FMath.PI) / p)) + b;
         }
 
         static float ElasticOut(float t, float b, float c, float d) {
@@ -230,7 +230,7 @@ namespace MortiseFrame.Swing {
             float p = d * .3f;
             float a = c;
             float s = p / 4;
-            return (a * (float)Mathf.Pow(2, -10 * t) * (float)Mathf.Sin((t * d - s) * (2 * (float)Mathf.PI) / p) + c + b);
+            return (a * (float)FMath.Pow(2, -10 * t) * (float)FMath.Sin((t * d - s) * (2 * (float)FMath.PI) / p) + c + b);
         }
 
         static float ElasticInOut(float t, float b, float c, float d) {
@@ -238,8 +238,8 @@ namespace MortiseFrame.Swing {
             float p = d * (.3f * 1.5f);
             float a = c;
             float s = p / 4;
-            if (t < 1) return -.5f * (a * (float)Mathf.Pow(2, 10 * (t -= 1)) * (float)Mathf.Sin((t * d - s) * (2 * (float)Mathf.PI) / p)) + b;
-            return a * (float)Mathf.Pow(2, -10 * (t -= 1)) * (float)Mathf.Sin((t * d - s) * (2 * (float)Mathf.PI) / p) * .5f + c + b;
+            if (t < 1) return -.5f * (a * (float)FMath.Pow(2, 10 * (t -= 1)) * (float)FMath.Sin((t * d - s) * (2 * (float)FMath.PI) / p)) + b;
+            return a * (float)FMath.Pow(2, -10 * (t -= 1)) * (float)FMath.Sin((t * d - s) * (2 * (float)FMath.PI) / p) * .5f + c + b;
         }
 
         static float BounceIn(float t, float b, float c, float d) {

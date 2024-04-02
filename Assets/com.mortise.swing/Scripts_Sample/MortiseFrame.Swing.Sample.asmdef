@@ -2,6 +2,7 @@
     "name": "MortiseFrame.Swing.Sample",
     "rootNamespace": "",
     "references": [
+        "GUID:8bae2f23322789e429cb9222c6dc46dc",
         "GUID:3e1313b9d6abf4d0394d17448e7e610f"
     ],
     "includePlatforms": [],
