@@ -2,7 +2,6 @@ using UnityEngine;
 using MortiseFrame.Swing;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using MortiseFrame.Abacus;
 
 namespace MortiseFrame.Swing.Sample {
 
@@ -120,7 +119,7 @@ namespace MortiseFrame.Swing.Sample {
         private void UpdateLine() {
 
             for (int i = 0; i < resolution; i++) {
-                var pos = EasingHelper.Easing2D(new FVector2(-1f, -1f), new FVector2(1f, 2f), i, resolution, type, mode);
+                var pos = EasingHelper.Easing2D(new Vector2(-1f, -1f), new Vector2(1f, 2f), i, resolution, type, mode);
                 Vector3 position = new Vector3(pos.x, pos.y, 0f) + transform.position;
                 lineRenderer.SetPosition(i, position);
             }
@@ -135,7 +134,7 @@ namespace MortiseFrame.Swing.Sample {
                 currentTime = 0;
             }
 
-            var pos = EasingHelper.Easing2D(new FVector2(-1f, -1f), new FVector2(1f, 2f), currentTime, duration, type, mode);
+            var pos = EasingHelper.Easing2D(new Vector2(-1f, -1f), new Vector2(1f, 2f), currentTime, duration, type, mode);
             nod1.position = new Vector3(pos.x, pos.y, 5f);
 
         }
