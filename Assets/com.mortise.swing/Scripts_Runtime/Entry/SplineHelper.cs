@@ -25,6 +25,20 @@ namespace MortiseFrame.Swing {
             return new Vector2(x, y);
         }
 
+        public static float CalculateSplineLength(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, SplineType splineType, int segments = 100) {
+            float length = 0f;
+            Vector2 prevPoint = SplineHelper.Easing(p0, p1, p2, p3, 0, 1, splineType);
+            Vector2 nextPoint;
+
+            for (int i = 1; i <= segments; i++) {
+                nextPoint = Easing(p0, p1, p2, p3, i, segments, splineType);
+                length += Vector2.Distance(prevPoint, nextPoint);
+                prevPoint = nextPoint;
+            }
+
+            return length;
+        }
+
     }
 
 }

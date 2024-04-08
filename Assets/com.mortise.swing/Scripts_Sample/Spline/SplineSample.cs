@@ -20,6 +20,7 @@ namespace MortiseFrame.Swing.Sample {
         public Transform car;
         public DragableElement[] ps;
         public Button resetButton;
+        public Text lengthText;
 
         Vector3[] originPos = new Vector3[4];
 
@@ -135,6 +136,9 @@ namespace MortiseFrame.Swing.Sample {
                 Vector3 position = new Vector3(pos.x, pos.y, 0f) + transform.position;
                 lineRenderer.SetPosition(i, position);
             }
+
+            var length = SplineHelper.CalculateSplineLength(ps[0].Pos, ps[1].Pos, ps[2].Pos, ps[3].Pos, type, resolution);
+            lengthText.text = $"Length: {length.ToString("F2")}";
 
         }
 
