@@ -15,7 +15,7 @@ namespace MortiseFrame.Swing {
 
             Matrix4x4 splineMatrix = SplineMatrix.GetSplineMatrix(splineType);
 
-            Vector4 T = new Vector4(t * t * t, t * t, t, 1);
+            Vector4 T = new Vector4(1, t, t * t, t * t * t);
             Vector4 Px = new Vector4(p0.x, p1.x, p2.x, p3.x);
             Vector4 Py = new Vector4(p0.y, p1.y, p2.y, p3.y);
 
