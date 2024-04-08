@@ -5,7 +5,7 @@ namespace MortiseFrame.Swing {
 
     public static class SplineHelper {
 
-        public static Vector2 CalculateSplinePoint(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, float current, float duration, SplineType splineType) {
+        public static Vector2 Easing(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, float current, float duration, SplineType splineType) {
             if (duration <= 0f) {
                 throw new ArgumentException("Duration Must Be Greater Than Zero.", nameof(duration));
             }
