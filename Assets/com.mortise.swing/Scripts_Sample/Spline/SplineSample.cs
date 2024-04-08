@@ -146,9 +146,9 @@ namespace MortiseFrame.Swing.Sample {
             // Process Input
             if (Input.GetMouseButtonDown(0)) {
                 Vector3 screenPos = Input.mousePosition;
-                screenPos.z = Camera.main.nearClipPlane + 5; // 从相机到物体的距离
-                Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
-                var layerMask = 5 << 8;
+                screenPos.z = Camera.main.WorldToScreenPoint(transform.position).z; // 转换摄像机到物体平面的z值
+                Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+                var layerMask = 1 << 5;
                 RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, layerMask);
                 if (hit.collider != null) {
                     var draggable = hit.collider.GetComponent<DragableElement>();
