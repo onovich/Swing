@@ -5,9 +5,11 @@ using UnityEngine.EventSystems;
 
 namespace MortiseFrame.Swing.Sample {
 
-    public class WaveSample : MonoBehaviour {
+    public class Easing2DSample : MonoBehaviour {
 
         // Config
+        EasingType type;
+        EasingMode mode;
         public float duration = 1f;
         public int resolution = 50;
 
@@ -15,30 +17,19 @@ namespace MortiseFrame.Swing.Sample {
         public LineRenderer lineRenderer;
         public MeshRenderer boxRender;
         public MeshFilter boxFilter;
-        public Text frequencyTxt;
-        public Text amplitudeTxt;
-        public Text phaseTxt;
-        public InputField frequencyInput;
-        public InputField amplitudeInput;
-        public InputField phaseInput;
-        public Dropdown waveTypeDropdown;
-
-        public Button playBtn;
+        public Dropdown EasingTypeDropdown;
+        public Dropdown EasingModeDropdown;
         public Transform nod1;
-        public Transform nod2;
 
         // Lift Cycle
         float currentTime = 0f;
-        float frequency = 1f;
-        float amplitude = 1f;
-        float phase = 0f;
-        WaveType waveType = WaveType.Sine;
 
         private void Awake() {
 
             // Init Line 
             lineRenderer.positionCount = resolution;
             lineRenderer.widthCurve = AnimationCurve.Linear(0, 0.1f, 1, 0.1f);
+
             UpdateLine();
 
             Mesh mesh = new Mesh();
@@ -52,14 +43,14 @@ namespace MortiseFrame.Swing.Sample {
             // - 定义外矩形的四个顶点
             vertices[0] = new Vector3(-1f - thickness, -1f - thickness, 0); // 左下角
             vertices[1] = new Vector3(1f + thickness, -1f - thickness, 0); // 右下角
-            vertices[2] = new Vector3(-1f - thickness, 1f + thickness, 0); // 左上角
-            vertices[3] = new Vector3(1f + thickness, 1f + thickness, 0); // 右上角
+            vertices[2] = new Vector3(-1f - thickness, 2f + thickness, 0); // 左上角
+            vertices[3] = new Vector3(1f + thickness, 2f + thickness, 0); // 右上角
 
             // - 定义内矩形的四个顶点
             vertices[4] = new Vector3(-1f + thickness, -1f + thickness, 0);
             vertices[5] = new Vector3(1f - thickness, -1f + thickness, 0);
-            vertices[6] = new Vector3(-1f + thickness, 1f - thickness, 0);
-            vertices[7] = new Vector3(1f - thickness, 1f - thickness, 0);
+            vertices[6] = new Vector3(-1f + thickness, 2f - thickness, 0);
+            vertices[7] = new Vector3(1f - thickness, 2f - thickness, 0);
 
             // - 为四条边定义顶点
             vertices[8] = vertices[0];
@@ -96,60 +87,40 @@ namespace MortiseFrame.Swing.Sample {
             boxFilter.mesh = mesh;
 
             // Draw Choice
-            var waveTypeOptions = System.Enum.GetNames(typeof(WaveType));
-            waveTypeDropdown.options.Clear();
+            var typeNames = System.Enum.GetNames(typeof(EasingType));
+            var modeNames = System.Enum.GetNames(typeof(EasingMode));
 
-            for (int i = 0; i < waveTypeOptions.Length; i++) {
-                waveTypeDropdown.options.Add(new Dropdown.OptionData(waveTypeOptions[i]));
+            EasingTypeDropdown.options.Clear();
+            EasingModeDropdown.options.Clear();
+
+            for (int i = 0; i < typeNames.Length; i++) {
+                EasingTypeDropdown.options.Add(new Dropdown.OptionData(typeNames[i]));
             }
 
-            waveTypeDropdown.value = (int)waveType;
-            waveTypeDropdown.onValueChanged.AddListener((int value) => {
-                waveType = value == 0 ? WaveType.Sine : ((WaveType)value);
+            for (int i = 0; i < modeNames.Length; i++) {
+                EasingModeDropdown.options.Add(new Dropdown.OptionData(modeNames[i]));
+            }
+
+            EasingTypeDropdown.value = 0;
+            EasingModeDropdown.value = 0;
+
+            EasingTypeDropdown.onValueChanged.AddListener((int index) => {
+                type = (EasingType)index;
                 UpdateLine();
             });
 
-            playBtn.onClick.AddListener(() => {
-                Refresh();
+            EasingModeDropdown.onValueChanged.AddListener((int index) => {
+                mode = (EasingMode)index;
                 UpdateLine();
             });
 
-            frequencyInput.onEndEdit.AddListener((string value) => {
-                frequency = value == "" ? 1f : float.Parse(value);
-                UpdateLine();
-            });
-
-            amplitudeInput.onEndEdit.AddListener((string value) => {
-                amplitude = value == "" ? 1f : float.Parse(value);
-                UpdateLine();
-            });
-
-            phaseInput.onEndEdit.AddListener((string value) => {
-                phase = value == "" ? 0f : float.Parse(value);
-                UpdateLine();
-            });
-
-            Reset();
-
-        }
-
-        void Reset() {
-            frequency = 1f;
-            amplitude = 1f;
-            phase = 0f;
-            waveType = 0;
-        }
-
-        void Refresh() {
-            currentTime = 0;
         }
 
         private void UpdateLine() {
 
             for (int i = 0; i < resolution; i++) {
-                var x = EasingHelper.Easing(-1f, 1f, i, resolution, EasingType.Linear, EasingMode.None);
-                var y = WaveHelper.Wave(frequency / resolution, amplitude, i, phase, (WaveType)waveType);
-                Vector3 position = new Vector3(x, y, 0f) + transform.position;
+                var pos = EasingHelper.Easing2D(new Vector2(-1f, -1f), new Vector2(1f, 2f), i, resolution, type, mode);
+                Vector3 position = new Vector3(pos.x, pos.y, 0f) + transform.position;
                 lineRenderer.SetPosition(i, position);
             }
 
@@ -163,10 +134,8 @@ namespace MortiseFrame.Swing.Sample {
                 currentTime = 0;
             }
 
-            var x1 = EasingHelper.Easing(-1f, 1f, currentTime, duration, EasingType.Linear, EasingMode.None);
-            var y1 = WaveHelper.Wave(frequency, amplitude, currentTime, phase, (WaveType)waveType);
-            nod1.position = new Vector3(x1, y1, 5f);
-            nod2.position = new Vector3(1, y1, 5f);
+            var pos = EasingHelper.Easing2D(new Vector2(-1f, -1f), new Vector2(1f, 2f), currentTime, duration, type, mode);
+            nod1.position = new Vector3(pos.x, pos.y, 5f);
 
         }
 

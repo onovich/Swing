@@ -1,6 +1,5 @@
 using System;
 using System.Runtime.InteropServices;
-using MortiseFrame.Abacus;
 
 namespace MortiseFrame.Swing {
 
