@@ -92,9 +92,9 @@ namespace MortiseFrame.Swing.Sample {
         void UpdateLine() {
 
             for (int i = 0; i < resolution; i++) {
-                var pos = OrbitHelper.Round2D(ps[0].Pos, ps[1].Pos, ps[2].Pos,
+                var pos = OrbitHelper.Round3D(ps[0].Pos, ps[1].Pos, ps[2].Pos,
                 i, resolution, isClockwise, type, mode);
-                Vector3 position = new Vector3(pos.x, pos.y, 5);
+                Vector3 position = new Vector3(pos.x, pos.y, pos.z);
                 lineRenderer_orbit.SetPosition(i, position);
             }
 
@@ -104,7 +104,7 @@ namespace MortiseFrame.Swing.Sample {
             lineRenderer_end.SetPosition(0, ps[1].Pos);
             lineRenderer_end.SetPosition(1, ps[2].Pos);
 
-            var angle = OrbitHelper.GetRoundAngle2D(ps[0].Pos, ps[1].Pos, ps[2].Pos, isClockwise);
+            var angle = OrbitHelper.GetRoundAngle3D(ps[0].Pos, ps[1].Pos, ps[2].Pos, isClockwise);
             angleText.text = angle.ToString("F2") + "°";
 
         }
@@ -143,7 +143,7 @@ namespace MortiseFrame.Swing.Sample {
                 Vector3 screenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen);
                 Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
 
-                ps[draggingIndex].transform.position = new Vector3(worldPosition.x, worldPosition.y, 5f);
+                ps[draggingIndex].transform.position = new Vector3(worldPosition.x, worldPosition.y, worldPosition.z);
                 UpdateLine();
             }
 
@@ -154,8 +154,8 @@ namespace MortiseFrame.Swing.Sample {
             var start = ps[0].Pos;
             var end = ps[1].Pos;
             var center = ps[2].Pos;
-            var current = OrbitHelper.Round2D(start, end, center, currentTime, duration, isClockwise, type, mode);
-            ps[3].transform.position = new Vector3(current.x, current.y, 5f);
+            var current = OrbitHelper.Round3D(start, end, center, currentTime, duration, isClockwise, type, mode);
+            ps[3].transform.position = new Vector3(current.x, current.y, current.z);
 
             currentTime += Time.deltaTime;
 

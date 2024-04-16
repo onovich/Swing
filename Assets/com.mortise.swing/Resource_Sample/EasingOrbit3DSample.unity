@@ -945,7 +945,7 @@ Transform:
   m_GameObject: {fileID: 243957433}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.19, y: 0.33, z: 5}
+  m_LocalPosition: {x: -1.19, y: -0.22, z: 4}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2171,7 +2171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1262023915}
-  - component: {fileID: 1262023922}
+  - component: {fileID: 1262023923}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -2194,7 +2194,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1262023922
+--- !u!114 &1262023923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2203,7 +2203,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1262023913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0469a95b8e6caa4eaa1f0056b21394a, type: 3}
+  m_Script: {fileID: 11500000, guid: 30b04241f4f1c9e4f9dc73ba416273a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   resetButton: {fileID: 33617695}
