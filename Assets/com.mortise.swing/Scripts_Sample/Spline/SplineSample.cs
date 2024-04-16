@@ -27,6 +27,10 @@ namespace MortiseFrame.Swing.Sample {
         // Lift Cycle
         float currentTime = 0f;
 
+        // Dragble
+        bool isDragging = false;
+        int draggingIndex;
+
         private void Awake() {
 
             // Init Dragable
@@ -141,9 +145,6 @@ namespace MortiseFrame.Swing.Sample {
             lengthText.text = $"Length: {length.ToString("F2")}";
 
         }
-
-        bool isDragging = false;
-        int draggingIndex;
 
         private void Update() {
 
