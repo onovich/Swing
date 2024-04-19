@@ -11,8 +11,8 @@ The project also provides a wealth of runtime examples.<br/>
 **项目内也提供了丰富的运行时示例。**
 
 # Other Version
-[MortiseFrame.Sway](https://github.com/onovich/Sway) is a parallel version of the current library, independent of the Unity Engine, suitable for server-side use.<br/>
-**[MortiseFrame.Sway](https://github.com/onovich/Sway) 是当前库的平行版本，不依赖 Unity Engine，适用于服务端。**
+[Sway](https://github.com/onovich/Sway) is a parallel version of the current library, independent of the Unity Engine, suitable for server-side use.<br/>
+**[Sway](https://github.com/onovich/Sway) 是当前库的平行版本，不依赖 Unity Engine，适用于服务端。**
 
 # Enum
 | Enum        | Members                                           |

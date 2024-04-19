@@ -37,6 +37,13 @@ namespace MortiseFrame.Swing {
             return new Vector3(x, y, z);
         }
 
+        public static Quaternion SlerpEasing(Quaternion start, Quaternion end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) {
+            EasingHandler easingFunction = GetEasingFunction(type, mode);
+            float easedProgress = easingFunction(current, 0, 1, duration, mode);
+            Quaternion result = Quaternion.Slerp(start, end, easedProgress);
+            return result;
+        }
+
         public static float Easing(float start, float end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) {
             EasingHandler easingFunction = GetEasingFunction(type, mode);
             var t = current;
