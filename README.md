@@ -1,5 +1,5 @@
 # Swing
-Prism, a lightweight special effects management library. <br/>
+Swing, a lightweight easing function library. <br/>
 **Swing，轻量级的缓动函数库，取名自“曳”。**
 
 ![](https://github.com/onovich/Swing/blob/main/Assets/com.mortise.swing/Resource_Sample/spr_scr_shoot.png)
