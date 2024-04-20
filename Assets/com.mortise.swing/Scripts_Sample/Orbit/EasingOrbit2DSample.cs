@@ -24,12 +24,12 @@ namespace MortiseFrame.Swing.Sample {
         public Dropdown EasingTypeDropDown;
         public Dropdown EasingModeDropDown;
         public Dropdown ClockwiseDropDown;
-
-        public Text angleText;
+        public Dropdown FullOrMinDropDown;
 
         EasingType type = EasingType.Linear;
         EasingMode mode = EasingMode.None;
         bool isClockwise = true;
+        bool isFullOrbit = true;
 
         void Awake() {
 
@@ -79,6 +79,17 @@ namespace MortiseFrame.Swing.Sample {
                 UpdateLine();
             });
 
+            var fullOrMinNames = new string[] { "Full", "Min" };
+            FullOrMinDropDown.options.Clear();
+            for (int i = 0; i < fullOrMinNames.Length; i++) {
+                FullOrMinDropDown.options.Add(new Dropdown.OptionData(fullOrMinNames[i]));
+            }
+            FullOrMinDropDown.value = 0;
+            FullOrMinDropDown.onValueChanged.AddListener((int index) => {
+                isFullOrbit = index == 0;
+                UpdateLine();
+            });
+
             ClockwiseDropDown.options.Clear();
             ClockwiseDropDown.options.Add(new Dropdown.OptionData("Clockwise"));
             ClockwiseDropDown.options.Add(new Dropdown.OptionData("CounterClockwise"));
@@ -92,8 +103,9 @@ namespace MortiseFrame.Swing.Sample {
         void UpdateLine() {
 
             for (int i = 0; i < resolution; i++) {
-                var pos = OrbitHelper.Round2D(ps[0].Pos, ps[1].Pos, ps[2].Pos,
-                i, resolution, isClockwise, type, mode);
+                var pos = isFullOrbit ? OrbitHelper.RoundFull2D(ps[0].Pos, ps[1].Pos, ps[2].Pos,
+                i, resolution, isClockwise, type, mode) :
+                OrbitHelper.RoundMin2D(ps[0].Pos, ps[1].Pos, ps[2].Pos, i, resolution, type, mode);
                 Vector3 position = new Vector3(pos.x, pos.y, 5);
                 lineRenderer_orbit.SetPosition(i, position);
             }
@@ -103,9 +115,6 @@ namespace MortiseFrame.Swing.Sample {
 
             lineRenderer_end.SetPosition(0, ps[1].Pos);
             lineRenderer_end.SetPosition(1, ps[2].Pos);
-
-            var angle = OrbitHelper.GetRoundAngle2D(ps[0].Pos, ps[1].Pos, ps[2].Pos, isClockwise);
-            angleText.text = angle.ToString("F2") + "°";
 
         }
 
@@ -154,7 +163,8 @@ namespace MortiseFrame.Swing.Sample {
             var start = ps[0].Pos;
             var end = ps[1].Pos;
             var center = ps[2].Pos;
-            var current = OrbitHelper.Round2D(start, end, center, currentTime, duration, isClockwise, type, mode);
+            var current = isFullOrbit ? OrbitHelper.RoundFull2D(start, end, center, currentTime, duration, isClockwise, type, mode)
+            : OrbitHelper.RoundMin2D(start, end, center, currentTime, duration, type, mode);
             ps[3].transform.position = new Vector3(current.x, current.y, 5f);
 
             currentTime += Time.deltaTime;

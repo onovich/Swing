@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace MortiseFrame.Swing.Sample {
 
-    public class EasingOrbit3DSample : MonoBehaviour {
+    public class EasingOrbit3DHorizontalSample : MonoBehaviour {
 
         public Button resetButton;
 
@@ -103,9 +103,9 @@ namespace MortiseFrame.Swing.Sample {
         void UpdateLine() {
 
             for (int i = 0; i < resolution; i++) {
-                var pos = isFullOrbit ? OrbitHelper.RoundFull3D(ps[0].Pos, ps[1].Pos, ps[2].Pos,
+                var pos = isFullOrbit ? OrbitHelper.Round3DHorizontalFull(ps[0].Pos, ps[1].Pos, ps[2].Pos,
                 i, resolution, isClockwise, type, mode) :
-                OrbitHelper.RoundMin3D(ps[0].Pos, ps[1].Pos, ps[2].Pos,
+                OrbitHelper.Round3DHorizontalMin(ps[0].Pos, ps[1].Pos, ps[2].Pos,
                 i, resolution, type, mode);
                 Vector3 position = new Vector3(pos.x, pos.y, pos.z);
                 lineRenderer_orbit.SetPosition(i, position);
@@ -164,8 +164,8 @@ namespace MortiseFrame.Swing.Sample {
             var start = ps[0].Pos;
             var end = ps[1].Pos;
             var center = ps[2].Pos;
-            var current = isFullOrbit ? OrbitHelper.RoundFull3D(start, end, center, currentTime, duration, isClockwise, type, mode) :
-            OrbitHelper.RoundMin3D(start, end, center, currentTime, duration, type, mode);
+            var current = isFullOrbit ? OrbitHelper.Round3DHorizontalFull(start, end, center, currentTime, duration, isClockwise, type, mode) :
+            OrbitHelper.Round3DHorizontalMin(start, end, center, currentTime, duration, type, mode);
             ps[3].transform.position = new Vector3(current.x, current.y, current.z);
 
             currentTime += Time.deltaTime;
