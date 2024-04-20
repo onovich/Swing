@@ -1,5 +1,5 @@
 # Swing
-Swing, a lightweight easing function library. <br/>
+Prism, a lightweight special effects management library. <br/>
 **Swing，轻量级的缓动函数库，取名自“曳”。**
 
 ![](https://github.com/onovich/Swing/blob/main/Assets/com.mortise.swing/Resource_Sample/spr_scr_shoot.png)
@@ -13,6 +13,10 @@ The project also provides a wealth of runtime examples.<br/>
 # Other Version
 [Sway](https://github.com/onovich/Sway) is a parallel version of the current library, independent of the Unity Engine, suitable for server-side use.<br/>
 **[Sway](https://github.com/onovich/Sway) 是当前库的平行版本，不依赖 Unity Engine，适用于服务端。**
+
+# Readiness
+Stable and available.<br/>
+**稳定可用。**
 
 # Enum
 | Enum        | Members                                           |
