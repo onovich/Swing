@@ -1136,7 +1136,7 @@ MonoBehaviour:
   otherDropDown:
   - {fileID: 7062553688693593790}
   - {fileID: 1262133792}
-  - {fileID: 1262133792}
+  - {fileID: 951960402}
 --- !u!225 &417217797
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1977,6 +1977,7 @@ MonoBehaviour:
   otherDropDown:
   - {fileID: 7062553688693593790}
   - {fileID: 417217798}
+  - {fileID: 1262133792}
 --- !u!225 &951960401
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2761,7 +2762,7 @@ MonoBehaviour:
   EasingTypeDropDown: {fileID: 7062553688693593790}
   EasingModeDropDown: {fileID: 417217798}
   ClockwiseDropDown: {fileID: 1262133792}
-  FullOrMinDropDown: {fileID: 0}
+  FullOrMinDropDown: {fileID: 951960402}
 --- !u!1 &1262133788
 GameObject:
   m_ObjectHideFlags: 0
@@ -2820,6 +2821,7 @@ MonoBehaviour:
   otherDropDown:
   - {fileID: 7062553688693593790}
   - {fileID: 417217798}
+  - {fileID: 951960402}
 --- !u!225 &1262133791
 CanvasGroup:
   m_ObjectHideFlags: 0
