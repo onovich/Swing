@@ -15,15 +15,13 @@ namespace MortiseFrame.Swing.Sample {
         public LineRenderer lineRenderer;
         public MeshRenderer boxRender;
         public MeshFilter boxFilter;
-        public Text frequencyTxt;
-        public Text amplitudeTxt;
-        public Text phaseTxt;
         public InputField frequencyInput;
         public InputField amplitudeInput;
         public InputField phaseInput;
         public Dropdown waveTypeDropdown;
         public Dropdown easingTypeDropdown;
         public Dropdown easingModeDropdown;
+        public Dropdown waveEasingModeDropdown;
 
         public Button playBtn;
         public Transform nod1;
@@ -37,6 +35,7 @@ namespace MortiseFrame.Swing.Sample {
         WaveType waveType = WaveType.Sine;
         EasingMode easingMode = EasingMode.None;
         EasingType easingType = EasingType.Linear;
+        EasingMode waveEasingMode = EasingMode.EaseOut;
 
         private void Awake() {
 
@@ -103,10 +102,12 @@ namespace MortiseFrame.Swing.Sample {
             var waveTypeOptions = System.Enum.GetNames(typeof(WaveType));
             var easingTypeOptions = System.Enum.GetNames(typeof(EasingType));
             var easingModeOptions = System.Enum.GetNames(typeof(EasingMode));
+            var waveEasingModeOptions = System.Enum.GetNames(typeof(EasingMode));
 
             waveTypeDropdown.options.Clear();
             easingTypeDropdown.options.Clear();
             easingModeDropdown.options.Clear();
+            waveEasingModeDropdown.options.Clear();
 
             for (int i = 0; i < waveTypeOptions.Length; i++) {
                 waveTypeDropdown.options.Add(new Dropdown.OptionData(waveTypeOptions[i]));
@@ -118,6 +119,10 @@ namespace MortiseFrame.Swing.Sample {
 
             for (int i = 0; i < easingModeOptions.Length; i++) {
                 easingModeDropdown.options.Add(new Dropdown.OptionData(easingModeOptions[i]));
+            }
+
+            for (int i = 0; i < waveEasingModeOptions.Length; i++) {
+                waveEasingModeDropdown.options.Add(new Dropdown.OptionData(waveEasingModeOptions[i]));
             }
 
             waveTypeDropdown.value = (int)waveType;
@@ -135,6 +140,12 @@ namespace MortiseFrame.Swing.Sample {
             easingModeDropdown.value = (int)easingMode;
             easingModeDropdown.onValueChanged.AddListener((int value) => {
                 easingMode = (EasingMode)value;
+                UpdateLine();
+            });
+
+            waveEasingModeDropdown.value = (int)waveEasingMode;
+            waveEasingModeDropdown.onValueChanged.AddListener((int value) => {
+                waveEasingMode = (EasingMode)value;
                 UpdateLine();
             });
 
@@ -177,7 +188,24 @@ namespace MortiseFrame.Swing.Sample {
 
             for (int i = 0; i < resolution; i++) {
                 var x = EasingHelper.Easing(-1f, 1f, i, resolution, EasingType.Linear, EasingMode.None);
-                var y = WaveHelper.EasingOutWave(frequency / resolution, amplitude, i, resolution, phase, waveType, easingType, easingMode);
+                var y = 0f;
+
+                if (waveEasingMode == EasingMode.None) {
+                    y = WaveHelper.Wave(frequency / resolution, amplitude, i, phase, waveType);
+                }
+
+                if (waveEasingMode == EasingMode.EaseOut) {
+                    y = WaveHelper.EasingOutWave(frequency / resolution, amplitude, i, resolution, phase, waveType, easingType, easingMode);
+                }
+
+                if (waveEasingMode == EasingMode.EaseIn) {
+                    y = WaveHelper.EasingInWave(frequency / resolution, amplitude, i, resolution, phase, waveType, easingType, easingMode);
+                }
+
+                if (waveEasingMode == EasingMode.EaseInOut) {
+                    y = WaveHelper.EasingInOutWave(frequency / resolution, amplitude, i, resolution, phase, waveType, easingType, easingMode);
+                }
+
                 Vector3 position = new Vector3(x, y, 0f) + transform.position;
                 lineRenderer.SetPosition(i, position);
             }
@@ -192,11 +220,27 @@ namespace MortiseFrame.Swing.Sample {
                 currentTime = 0;
             }
 
-            var x1 = EasingHelper.Easing(-1f, 1f, currentTime, duration, EasingType.Linear, EasingMode.None);
-            var y1 = WaveHelper.EasingOutWave(frequency, amplitude, currentTime, duration, phase, waveType, easingType, easingMode);
+            var x = EasingHelper.Easing(-1f, 1f, currentTime, duration, EasingType.Linear, EasingMode.None);
+            var y = 0f;
 
-            nod1.position = new Vector3(x1, y1, 5f);
-            nod2.position = new Vector3(1, y1, 5f);
+            if (waveEasingMode == EasingMode.None) {
+                y = WaveHelper.Wave(frequency, amplitude, currentTime, phase, waveType);
+            }
+
+            if (waveEasingMode == EasingMode.EaseOut) {
+                y = WaveHelper.EasingOutWave(frequency, amplitude, currentTime, duration, phase, waveType, easingType, easingMode);
+            }
+
+            if (waveEasingMode == EasingMode.EaseIn) {
+                y = WaveHelper.EasingInWave(frequency, amplitude, currentTime, duration, phase, waveType, easingType, easingMode);
+            }
+
+            if (waveEasingMode == EasingMode.EaseInOut) {
+                y = WaveHelper.EasingInOutWave(frequency, amplitude, currentTime, duration, phase, waveType, easingType, easingMode);
+            }
+
+            nod1.position = new Vector3(x, y, 5f);
+            nod2.position = new Vector3(1, y, 5f);
 
         }
 

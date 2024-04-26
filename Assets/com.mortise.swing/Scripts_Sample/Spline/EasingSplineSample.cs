@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace MortiseFrame.Swing.Sample {
 
-    public class SplineSample : MonoBehaviour {
+    public class EasingSplineSample : MonoBehaviour {
 
         // Config
         SplineType type = SplineType.Bezier;
