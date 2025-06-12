@@ -62,6 +62,15 @@ namespace MortiseFrame.Swing {
             return (byte)easingFunction(t, b, c, d, mode);
         }
 
+        public static Quaternion EasingQuaternion(Quaternion start, Quaternion end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None) {
+            EasingHandler easingFunction = GetEasingFunction(type, mode);
+            var t = current;
+            var b = start;
+            var c = end * Quaternion.Inverse(start);
+            var d = duration;
+            return Quaternion.Slerp(b, b * c, easingFunction(t, 0, 1, d, mode));
+        }
+
         private static EasingHandler GetEasingFunction(EasingType type, EasingMode mode = EasingMode.None) {
 
             if (type == EasingType.Sine) {
