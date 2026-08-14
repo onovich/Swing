@@ -1,47 +1,32 @@
 # Swing
-Swing, a lightweight easing function library. <br/>
-**Swing，轻量级的缓动函数库，取名自“曳”。**
 
-![](https://github.com/onovich/Swing/blob/main/Assets/com.mortise.swing/Resource_Sample/spr_scr_shoot.png)
+[简体中文](README.zh-CN.md)
 
-Swing provides easing functions, waveform functions, spline functions, which can be used for applications such as animations, trajectories, cameras, etc.<br/>
-**Swing 提供缓动函数、波形函数、样条函数，可用于动画 / 轨迹 / 相机等应用。**
+A Unity-friendly collection of easing, waveform, spline, and noise functions.
 
-The project also provides a wealth of runtime examples.<br/>
-**项目内也提供了丰富的运行时示例。**
+![Swing cover](docs/cover.png)
 
-# Other Version
-[Sway](https://github.com/onovich/Sway) is a parallel version of the current library, independent of the Unity Engine, suitable for server-side use.<br/>
-**[Sway](https://github.com/onovich/Sway) 是当前库的平行版本，不依赖 Unity Engine，适用于服务端。**
+## What it includes
 
-# Readiness
-Stable and available.<br/>
-**稳定可用。**
+- Easing and wave functions.
+- Splines and reusable math utilities.
+- Unity samples and tests.
 
-# Enum
-| Enum        | Members                                           |
-|-------------|---------------------------------------------------|
-| EasingMode  | None, EaseIn, EaseOut, EaseInOut                  |
-| EasingType  | Linear, Sine, Quad, Cubic, Quart, Quint, Expo, Circ, Back, Elastic, Bounce |
-| SplineType  | Bezier, CatmullRom, Hermite, BSpline              |
+## Getting started
 
-# Functions
-| Static Class      | Static Function      | Args                                                                                   |
-|-------------|----------------------|---------------------------------------------------------------------------------------------------|
-| EasingHelper | EasingColor         | Color start, Color end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None |
-| EasingHelper | EasingColor32       | Color32 start, Color32 end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None |
-| EasingHelper | Easing2D             | Vector2 start, Vector2 end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None |
-| EasingHelper | Easing3D             | Vector3 start, Vector3 end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None |
-| EasingHelper | Easing               | float start, float end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None |
-| EasingHelper | EasingByte           | byte start, byte end, float current, float duration, EasingType type, EasingMode mode = EasingMode.None |
-| SplineHelper | Easing               | Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float current, float duration, SplineType splineType |
-| SplineHelper | CalculateSplineLength | Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, SplineType splineType, int segments = 100         |
-| WaveHelper   | EasingInWave         | float frequency, float amplitude, float current, float duration, float phase, WaveType waveType, EasingType type, EasingMode mode = EasingMode.None |
-| WaveHelper   | EasingOutWave        | float frequency, float amplitude, float current, float duration, float phase, WaveType waveType, EasingType type, EasingMode mode = EasingMode.None |
-| WaveHelper   | Wave                 | float frequency, float amplitude, float current, float phase, WaveType waveType                        |
+In Unity, open **Window → Package Manager**, choose **Add package from git URL**, and enter:
 
-# Sample
+```text
+https://github.com/onovich/Swing.git?path=/Assets/com.mortise.swing#main
 ```
+
+The package metadata declares Unity `2019.4` or later.
+
+The repository can also be opened as a Unity sample project.
+
+## Example
+
+```csharp
 // In Unity Project
 var timer = 10f;
 Color color;
@@ -56,6 +41,20 @@ void Update() {
 }
 ```
 
-# UPM URL
-**Main<br/>**
-ssh://git@github.com/onovich/Swing.git?path=/Assets/com.mortise.swing#main
+## Repository map
+
+- `Assets/` — Unity scripts, scenes, packages, and authored assets.
+- `Packages/` — Unity package dependencies.
+- `ProjectSettings/` — Unity project configuration.
+
+## Related projects
+
+- [Sway](https://github.com/onovich/Sway)
+
+## Status
+
+The current repository describes Swing as stable and available, and includes runtime samples and tests.
+
+## License
+
+This repository is licensed under [MIT](LICENSE).
